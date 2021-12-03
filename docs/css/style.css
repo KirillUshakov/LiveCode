@@ -967,6 +967,11 @@ a {
   overflow: hidden;
 }
 
+.player.fullScreenMode {
+  padding-top: 0;
+  height: 100%;
+}
+
 .player:hover .player__controls, .player:focus .player__controls, .player:focus-within .player__controls {
   opacity: 1;
   -webkit-transform: none;

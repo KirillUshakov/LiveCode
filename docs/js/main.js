@@ -242,9 +242,12 @@ jQuery(document).ready(function ($) {
   };
   siteCountDown();
 
-  // Live video
+  // Live video logic
+  /////////////////////////////////////////////////////////
 
   // -- Variables
+  /////////////////////////////
+
   const player = document.getElementById("player");
   const videoContainer = document.querySelector("#live-video");
   const video = videoContainer.querySelector("video") || videoContainer;
@@ -253,7 +256,9 @@ jQuery(document).ready(function ($) {
   const soundBtn = document.getElementById("player-sound-btn");
   const fsBtn = document.getElementById("player-fullscreen-btn");
 
-  // -- Event
+  // -- Events
+  /////////////////////////////
+
   // ---- Open fullscreen video by dbclick
   video.addEventListener("dblclick", function (e) {
     e.preventDefault();
@@ -283,6 +288,8 @@ jQuery(document).ready(function ($) {
   });
 
   // -- Fucntions
+  /////////////////////////////
+
   function toggleFullScreen(elem) {
     if (
       !document.fullscreenElement && // alternative standard method
@@ -292,21 +299,29 @@ jQuery(document).ready(function ($) {
     ) {
       if (elem.requestFullscreen) {
         elem.requestFullscreen();
+        elem.classList.add('fullScreenMode')
       } else if (elem.msRequestFullscreen) {
         elem.msRequestFullscreen();
+        elem.classList.add('fullScreenMode')
       } else if (elem.mozRequestFullScreen) {
         elem.mozRequestFullScreen();
+        elem.classList.add('fullScreenMode')
       } else if (elem.webkitRequestFullscreen) {
         elem.webkitRequestFullscreen();
+        elem.classList.add('fullScreenMode')
       }
     } else if (document.exitFullscreen) {
       document.exitFullscreen();
+      elem.classList.remove('fullScreenMode')
     } else if (document.msExitFullscreen) {
       document.msExitFullscreen();
+      elem.classList.remove('fullScreenMode')
     } else if (document.mozCancelFullScreen) {
       document.mozCancelFullScreen();
+      elem.classList.remove('fullScreenMode')
     } else if (document.webkitExitFullscreen) {
       document.webkitExitFullscreen();
+      elem.classList.remove('fullScreenMode')
     }
   }
 

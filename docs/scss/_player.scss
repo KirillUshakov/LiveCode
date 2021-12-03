@@ -23,6 +23,11 @@
     }
   }
 
+  &.fullScreenMode {
+    padding-top: 0;
+    height: 100%;
+  }
+
   &__video {
     position: absolute;
     left: 0;
