@@ -50,22 +50,28 @@
         <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
           <div class="col-12 pt-3 pb-3">
               <h3 class="font-weight-light"><a href="#">Event Stream</a></h3>
-              <img class="translation-status" src="images/live.png" width="472" height="103" alt=""/>
+              <div class="translation-status" width="472" height="103">
+                <p class="translation-status__live">Live </p>
+                <p id="live-time" class="translation-status__time"> Today at ...</p>
+              </div>
               <div class="player" id="player">
-                <video autoplay muted loop disablePictureInPicture poster="assets/videos/preview.jpg" class="player__video" id="live-video">
+                <video loop disablePictureInPicture poster="assets/videos/preview.jpg" class="player__video" id="live-video">
                   <source src="assets/videos/test.mp4" type="video/mp4">
                   <source src="assets/videos/test.webm" type="video/webm">
                 </video>
-                <div class="player__controls">
-                  <div class="player__sound-container">
-                    <button class="player__sound-btn muted" id="player-sound-btn" title="Turn On/off sound" aria-label="Turn On or turn off the sound">
-                    </button>
-                    <div class="player__sound">
-                      <input type="range" class="player__volume" id="player-volume" aria-label="Sound volume" min="0" max="100">
+                <div class="player__overlay">
+                  <button type="button" id="player-video-play-btn" class="player__play-btn" title="Play stream" aria-label="Play stream"></button>
+                  <div class="player__controls">
+                    <div class="player__sound-container">
+                      <button class="player__sound-btn" id="player-sound-btn" title="Turn On/off sound" aria-label="Turn On or turn off the sound">
+                      </button>
+                      <div class="player__sound">
+                        <input type="range" class="player__volume" id="player-volume" aria-label="Sound volume" value="40" min="0" max="100">
+                      </div>
                     </div>
+                    <button class="player__fullscreen-btn" id="player-fullscreen-btn" title="Fullscreen on/off" aria-label="Fullscreen on/off">
+                    </button>
                   </div>
-                  <button class="player__fullscreen-btn" id="player-fullscreen-btn" title="Fullscreen on/off" aria-label="Fullscreen on/off">
-                  </button>
                 </div>
               </div>
           </div>

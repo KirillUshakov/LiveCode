@@ -252,12 +252,27 @@ jQuery(document).ready(function ($) {
   const videoContainer = document.querySelector("#live-video");
   const video = videoContainer.querySelector("video") || videoContainer;
 
+  const liveTime = document.getElementById('live-time')
+  const playBtn = document.getElementById('player-video-play-btn')
   const volume = document.getElementById("player-volume");
   const soundBtn = document.getElementById("player-sound-btn");
   const fsBtn = document.getElementById("player-fullscreen-btn");
 
   // -- Events
   /////////////////////////////
+
+  // ---- Live time
+  setInterval(() => {
+    setLiveTime()
+  }, 1000)
+
+  // ---- Play video
+  playBtn.addEventListener('click', function(e) {
+    e.preventDefault()
+
+    playVideo(video)
+    player.classList.add('play')
+  })
 
   // ---- Open fullscreen video by dbclick
   video.addEventListener("dblclick", function (e) {
@@ -276,7 +291,7 @@ jQuery(document).ready(function ($) {
 
   // ---- Sound mixer
   volume.addEventListener("input", function () {
-    video.volume = this.value / 100;
+    setVideoVolume(video, this.value)
   });
 
   // ---- FullScreen Button
@@ -289,6 +304,19 @@ jQuery(document).ready(function ($) {
 
   // -- Fucntions
   /////////////////////////////
+  function setLiveTime() {
+    let result = "Today at "
+    const now = new Date();
+    const time = now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true})
+    let timeZoneUTC = now.getUTCDate() > 0 ? '+' + now.getUTCDate() : '-' + now.getUTCDate();
+
+    liveTime.innerHTML = result + time + ` (GMT${timeZoneUTC})`
+  }
+  setLiveTime()
+
+  function playVideo(video) {
+    video.play()
+  }
 
   function toggleFullScreen(elem) {
     if (
@@ -344,4 +372,9 @@ jQuery(document).ready(function ($) {
       elem.classList.add("muted");
     }
   }
+
+  function setVideoVolume(video, val) {
+    video.volume = val / 100;
+  }
+  setVideoVolume(video, volume.value)
 });
